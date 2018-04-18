@@ -1,0 +1,111 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://scripts/player.gd" type="Script" id=1]
+[ext_resource path="res://textures/player.png" type="Texture" id=2]
+[ext_resource path="res://scripts/target.gd" type="Script" id=3]
+[ext_resource path="res://textures/target.png" type="Texture" id=4]
+[ext_resource path="res://prefabs/messagebox.tscn" type="PackedScene" id=5]
+[ext_resource path="res://fonts/Welbutrin.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://scripts/son.gd" type="Script" id=7]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 8.0
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 8, 8 )
+
+[sub_resource type="DynamicFont" id=3]
+
+size = 64
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 6 )
+_sections_unfolded = [ "Resource", "Settings" ]
+
+[node name="root" type="Node" index="0"]
+
+[node name="player" type="Area2D" parent="." index="0"]
+
+editor/display_folded = true
+position = Vector2( 664.874, 412.917 )
+scale = Vector2( 5, 5 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+speed = 300
+
+[node name="player" type="Sprite" parent="player" index="0"]
+
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player" index="1"]
+
+shape = SubResource( 1 )
+
+[node name="target" type="Area2D" parent="." index="1"]
+
+position = Vector2( 451, 396 )
+scale = Vector2( 5, 5 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="target" index="0"]
+
+shape = SubResource( 2 )
+
+[node name="target" type="Sprite" parent="target" index="1"]
+
+texture = ExtResource( 4 )
+
+[node name="messagebox" parent="target" index="2" instance=ExtResource( 5 )]
+
+visible = false
+position = Vector2( 4.0022, -48.5686 )
+scale = Vector2( 2, 2 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="Label" type="Label" parent="target/messagebox" index="15"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -17.0
+margin_top = -4.0
+margin_right = 330.0
+margin_bottom = 84.0
+rect_scale = Vector2( 0.1, 0.1 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "He was #1"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = ExtResource( 7 )
+_sections_unfolded = [ "Rect", "Visibility", "custom_colors" ]
+fill_time = 0.25
+
+
